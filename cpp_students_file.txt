@@ -1,0 +1,2 @@
+NAME: Roth                          GENDER: male                          EMAIL: soychanratana@gmail.com       AGE: 18
+NAME: sdf                           GENDER: ad                            EMAIL: sdf                           AGE: 0
