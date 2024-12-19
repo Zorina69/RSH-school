@@ -25,7 +25,7 @@ class Student {
         }
         
         Student(string id ="RSH_0",string name = "Unknown", int age = 0, string gender = "Unknown", string email = "N/A") {
-            this->id=id;
+            this->id = id;
             this->name = name;
             this->age = age;
             this->gender = gender;
