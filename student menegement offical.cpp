@@ -126,12 +126,13 @@ class SchoolSystem{
                 }
                  filename.seekg(0, ios::end);
                 if (filename.tellg() == 0) {
-                    filename <<"=================================="<<colection_file[i]<<"===========================================================================================================\n"
-                    << left <<"ID"<<"("<<iD_each_subject[i]<< setw(20)<<"):"
-                    << setw(30) << "NAME:" 
-                    << setw(15) << "GENDER:" 
-                    << setw(40) << "EMAIL:" 
-                    << "AGE:" 
+                     
+                    filename<<"=================================="<<colection_file[i]<<"===========================================================================================================\n"
+                    << left<<"ID"<<"("<<iD_each_subject[i]<< setw(20)<<"):"
+                    << setw(30)<< "NAME:" 
+                    << setw(15)<< "GENDER:" 
+                    << setw(40)<< "EMAIL:"
+                    << "AGE:"
                     << endl;
                 }
                 filename.close();
@@ -199,10 +200,12 @@ class SchoolSystem{
                 cout << "No students are enrolled yet.\n";
                 return;
             }
-            cout<<"-------------------------------------------------------------------------------------------------------------------"<<endl;
+             cout << "\033[31m"; 
+            
+            cout << string(115, '-') << endl;
             cout << left <<setw(20)<<"ID:"<< setw(30) << "NAME:" << setw(15) << "GENDER:" << setw(40) << "EMAIL:" << "AGE:" << endl;
             cout << string(115, '-') << endl;
-            
+            cout<<"\033[0m";
             for (const auto &student : studentList) {
                 cout<<"|" << left <<setw(20)<<generateAndSaveID(filename);
                 student.displayStudent_info();
@@ -282,9 +285,7 @@ class SchoolSystem{
                 if (!HtmlCssJavascrpit_students_file) {
                         cout << "HtmlCssJavascrpit_students_file.csv is not found!" << endl;
                         return;
-                    }
-                    
-               
+                    }  
                 Student newStudent;
                 newStudent.input_username_age_gender_email();
                 system("cls");
@@ -326,119 +327,124 @@ class SchoolSystem{
 
             }
         }
-        void displayStudentList(){
-            cout<<"We have 4 Class for viewer: "<<endl;
-            cout<<"1.C++\n2.HtmlCssJavascrpit\n3.Java\n4.Python\n5.Display all class"<<endl;
-            int choice;
-            cout<<"Enter your choice: "; 
-            cin>>choice;
-            system("cls");
-            switch (choice) {
-                case 1: {
-                    ifstream file1("cpp_students_file.csv");
-                    if (!file1) {
-                        cout << "cpp_students_file.csv not found" << endl;
-                        break;
-                    }
-                    string line;
-                    while (getline(file1, line)) {
-                        cout << line << endl;
-                    }
-                    file1.close();
-                    break;
-                }
-
-                case 2: {
-                    ifstream file2("python_students_file.csv");
-                    if (!file2) {
-                        cout << "python_students_file.csv not found" << endl;
-                        break;
-                    }
-                    string line;
-                    while (getline(file2, line)) {
-                        cout << line << endl;
-                    }
-                    file2.close();
-                    break;
-                }
-
-                case 3: {
-                    ifstream file3("java_students_file.csv");
-                    if (!file3) {
-                        cout << "java_students_file.csv not found" << endl;
-                        break;
-                    }
-                    string line;
-                    while (getline(file3, line)) {
-                        cout << line << endl;
-                    }
-                    file3.close();
-                    break;
-                }
-
-                case 4: {
-                    ifstream file4("HtmlCssJavascript_students_list.csv");
-                    if (!file4) {
-                        cout << "HtmlCssJavascript_students_list.csv not found" << endl;
-                        break;
-                    }
-                    string line;
-                    while (getline(file4, line)) {
-                        cout << line << endl;
-                    }
-                    file4.close();
-                    break;
-                }
-
-                case 5: {
-                    string file1 = "cpp_students_file.csv";
-                    string file2 = "python_students_file.csv";
-                    string file3 = "java_students_file.csv";
-                    string file4 = "HtmlCssJavascript_students_file.csv";
-                    ofstream writeToStudentList("Students_list.csv");
-                    if (!writeToStudentList) {
-                        cout << "Error: Cannot open Students_list.csv for writing" << endl;
-                        break;
-                    }
-
-                    const string collectionFiles[4] = {file1, file2, file3, file4};
-
-                    for (const auto& file : collectionFiles) {
-                        ifstream readFromEachFile(file);
-                        if (!readFromEachFile) {
-                            cout << "Error: Cannot open " << file << endl;
-                            continue;
-                        }
-                        string line;
-                        while (getline(readFromEachFile, line)) {
-                            writeToStudentList << line << endl;
-                        }
-                        writeToStudentList << "\n\n";
-                        readFromEachFile.close();
-                    }
-                    writeToStudentList.close();
-
-                    ifstream readFromStudentList("Students_list.csv");
-                    if (!readFromStudentList) {
-                        cerr << "Error: Cannot open Students_list.csv for reading" << endl;
-                        break;
-                    }
-                    string line;
-                    while (getline(readFromStudentList, line)) {
-                        cout << line << endl;
-                    }
-                    readFromStudentList.close();
-                    break;
-                }
-
-                default:
-                    cout << "Invalid choice!" << endl;
-                    break;
+        void displayStudentList() {
+    cout << "We have 4 Class for viewer: " << endl;
+    cout << "1.C++\n2.HtmlCssJavascript\n3.Java\n4.Python\n5.Display all class" << endl;
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+    system("cls");
+    switch (choice) {
+        case 1: {
+            ifstream file1("cpp_students_file.csv");
+            if (!file1) {
+                cout << "cpp_students_file.csv not found" << endl;
+                break;
+            }
+            string line;
+            cout << "\033[31m";
+            while (getline(file1, line)) {
+                cout << line << endl;
+            }
+            cout<<"\033[0m";
+            file1.close();
+            break;
+        }
+        case 2: {
+            ifstream file2("HtmlCssJavascrpit_students_file.csv"); // Fixed filename
+            if (!file2) {
+                cout << "HtmlCssJavascrpit_students_file.csv not found" << endl;
+                break;
+            }
+            string line;
+            cout << "\033[31m";
+            while (getline(file2, line)) {
+                cout << line << endl;
+            }
+            cout<<"\033[0m";
+            file2.close();
+            break;
+        }
+        case 3: {
+            ifstream file3("java_students_file.csv");
+            if (!file3) {
+                cout << "java_students_file.csv not found" << endl;
+                break;
+            }
+            cout << "\033[31m";
+            string line;
+            while (getline(file3, line)) {
+                cout << line << endl;
+            }
+            cout<<"\033[0m";
+            file3.close();
+            break;
+        }
+        case 4: {
+            ifstream file4("python_students_file.csv");
+            if (!file4) {
+                cout << "python_students_file.csv not found" << endl;
+                break;
+            }
+            string line;
+            cout << "\033[31m";
+            while (getline(file4, line)) {
+                cout << line << endl;
+            }
+            cout<<"\033[0m";
+            file4.close();
+            break;
+        }
+        case 5: {
+            string file1 = "cpp_students_file.csv";
+            string file2 = "HtmlCssJavascrpit_students_file.csv"; // Fixed filename
+            string file3 = "java_students_file.csv";
+            string file4 = "python_students_file.csv";
+            ofstream writeToStudentList("Students_list.csv");
+            if (!writeToStudentList) {
+                cout << "Error: Cannot open Students_list.csv for writing" << endl;
+                break;
             }
 
-                        
-            
+            const string collectionFiles[4] = {file1, file2, file3, file4};
+
+            for (const auto& file : collectionFiles) {
+                ifstream readFromEachFile(file);
+                if (!readFromEachFile) {
+                    cout << "Error: Cannot open " << file << endl;
+                    continue;
+                }
+                string line;
+                while (getline(readFromEachFile, line)) {
+                    writeToStudentList << line << endl;
+                }
+                writeToStudentList << "\n\n";
+                readFromEachFile.close();
+            }
+            writeToStudentList.close();
+
+            ifstream readFromStudentList("Students_list.csv");
+            if (!readFromStudentList) {
+                cerr << "Error: Cannot open Students_list.csv for reading" << endl;
+                break;
+            }
+            string line;
+            cout << "\033[31m";
+            while (getline(readFromStudentList, line)) {
+                cout << line << endl;
+            }
+            cout << "\033[0m";
+            readFromStudentList.close();
+            break;
         }
+        default:
+            cout << "\033[31m";
+            cout << "Invalid choice!" << endl;
+            cout << "\033[0m";
+            break;
+    }
+}
+
         void serchStudentId(){
             string inputId;
             cout<<"Enter your ID: ";
