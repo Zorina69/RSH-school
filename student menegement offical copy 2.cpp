@@ -90,11 +90,8 @@ private:
         } while (idExistsInFile(newId, filename));
         return newId;
     }
-    
-    
-
 public:
-   
+
 
     void showLoadingScreen() {
         for (int i = 0; i < 5; i++) {
@@ -115,92 +112,92 @@ public:
     }
 
 
-void writeToFile() {
-    ofstream outFile("Information.txt");  
-    
-    if (!outFile.is_open()) {
-        cout << "\n===========================================\n";
-        cout << "    Error: Cannot open Information.txt file for writing.\n";
-        cout << "===========================================\n";
-        return;
+    void writeToFile() {
+        ofstream outFile("Information.txt");  
+        
+        if (!outFile.is_open()) {
+            cout << "\n===========================================\n";
+            cout << "    Error: Cannot open Information.txt file for writing.\n";
+            cout << "===========================================\n";
+            return;
+        }
+
+        
+        outFile << "RSH School offers great subjects for learning.\n";
+        outFile << "Subjects: C++, Python, Java, HTML, CSS, JavaScript\n";
+        outFile << "Our motto is: Teachers of Tomorrow, Students Today.\n";
+
+        outFile.close();  
+        cout << "File written successfully!\n";
     }
 
-    
-    outFile << "RSH School offers great subjects for learning.\n";
-    outFile << "Subjects: C++, Python, Java, HTML, CSS, JavaScript\n";
-    outFile << "Our motto is: Teachers of Tomorrow, Students Today.\n";
+        void displaySubjects() {
+        
+        ofstream outFile("offered_subjects.txt");
 
-    outFile.close();  
-    cout << "File written successfully!\n";
-}
+        
+        if (!outFile) {
+            cout << "Error opening file!" << endl;
+            return;
+        }
 
-    void displaySubjects() {
-    
-    ofstream outFile("offered_subjects.txt");
+        cout << "\033[1;36m"; 
+        cout << "=====================================" << endl;
+        cout << "    RSH School - Coding Classes    " << endl;
+        cout << "=====================================" << endl;
+        cout << "\033[0m";  
 
     
-    if (!outFile) {
-        cout << "Error opening file!" << endl;
-        return;
+        cout << endl;
+        cout << "\033[1;32m"; 
+        cout << "+-------------------------------------+" << endl;
+        cout << "|          Offered Subjects:         |" << endl;
+        cout << "+-------------------------------------+" << endl;
+        cout << "\033[0m";  
+
+        
+        string subjects[] = {"C++", "Python", "Java", "HTML, CSS, JavaScript"};
+
+    
+        for (const string& subject : subjects) {
+            cout << "|  " << setw(30) << left << subject << " |" << endl;
+            outFile << subject << endl;  
+        }
+
+        
+        cout << "\033[1;32m"; 
+        cout << "+-------------------------------------+" << endl;
+        cout << "\033[0m";  
+
+        
+        cout << endl;
+
+        cout << "\033[1;33m";  
+        cout << "The list of subjects has been saved to 'offered_subjects.txt'." << endl;
+        cout << "\033[0m";  
+
+        // Close the file
+        outFile.close();
     }
 
-    cout << "\033[1;36m"; 
-    cout << "=====================================" << endl;
-    cout << "    RSH School - Coding Classes    " << endl;
-    cout << "=====================================" << endl;
-    cout << "\033[0m";  
+    void displayHistory() {
+        // Display the history of the school
+        cout << "\033[1;35m";  // Purple text color
+        cout << "=====================================" << endl;
+        cout << "    History of RSH School           " << endl;
+        cout << "=====================================" << endl;
+        cout << "\033[0m";  
 
-  
-    cout << endl;
-    cout << "\033[1;32m"; 
-    cout << "+-------------------------------------+" << endl;
-    cout << "|          Offered Subjects:         |" << endl;
-    cout << "+-------------------------------------+" << endl;
-    cout << "\033[0m";  
+        cout << "\nRSH stands for ROTH, PISEY, and HOUR. These three founders have "
+            << "worked together to create an outstanding coding school, empowering "
+            << "students with the skills they need to succeed in the tech industry.\n\n";
 
-    
-    string subjects[] = {"C++", "Python", "Java", "HTML, CSS, JavaScript"};
-
-  
-    for (const string& subject : subjects) {
-        cout << "|  " << setw(30) << left << subject << " |" << endl;
-        outFile << subject << endl;  
+        cout << "\033[1;33m";  
+        cout << "RSH School is committed to providing high-quality programming education "
+            << "in languages like C++, Python, Java, and web development technologies like "
+            << "HTML, CSS, and JavaScript.\n\n";
+        cout << "\033[0m";  
     }
-
-    
-    cout << "\033[1;32m"; 
-    cout << "+-------------------------------------+" << endl;
-    cout << "\033[0m";  
-
-    
-    cout << endl;
-
-    cout << "\033[1;33m";  
-    cout << "The list of subjects has been saved to 'offered_subjects.txt'." << endl;
-    cout << "\033[0m";  
-
-    // Close the file
-    outFile.close();
-}
-
-void displayHistory() {
-    // Display the history of the school
-    cout << "\033[1;35m";  // Purple text color
-    cout << "=====================================" << endl;
-    cout << "    History of RSH School           " << endl;
-    cout << "=====================================" << endl;
-    cout << "\033[0m";  
-
-    cout << "\nRSH stands for ROTH, PISEY, and HOUR. These three founders have "
-         << "worked together to create an outstanding coding school, empowering "
-         << "students with the skills they need to succeed in the tech industry.\n\n";
-
-    cout << "\033[1;33m";  
-    cout << "RSH School is committed to providing high-quality programming education "
-         << "in languages like C++, Python, Java, and web development technologies like "
-         << "HTML, CSS, and JavaScript.\n\n";
-    cout << "\033[0m";  
-}
 
 
 
@@ -354,7 +351,7 @@ void displayHistory() {
             cout << "\n\n" << endl;
             displayList_EachSub(filename);
         }
-        // Handle the rest of the cases (python, html, javascript, java) similarly as in your original code...
+        
          else if(choice =="python") {
                 
                 
@@ -433,7 +430,7 @@ void displayHistory() {
             }
         }
     
-void ReportInformation() {
+    void ReportInformation() {
     cout << "Our school provides students 4 programming language choices:\n\n";
     string Subjects[4] = { "C++", "Python", "Html,Css,Javascript", "Java" };
     for (int i = 0; i < 4; i++) {
@@ -454,12 +451,24 @@ void ReportInformation() {
             return;
         }
 
+        int studentCount = 0, maleCount = 0, femaleCount = 0;
         string line;
-        cout << "\nReport for C++ Students:\n";
         while (getline(cpp_students_file, line)) {
-            cout << line << endl;
+            studentCount++;
+            // Assuming gender is represented as "Male" or "Female" in the CSV file
+            if (line.find("Male") != string::npos) {
+                maleCount++;
+            } else if (line.find("Female") != string::npos) {
+                femaleCount++;
+            }
         }
         cpp_students_file.close();
+
+        cout << "\nReport for C++ Students:\n";
+        cout << "Total students in C++: " << studentCount << endl;
+        cout << "Male students: " << maleCount << endl;
+        cout << "Female students: " << femaleCount << endl;
+        cout << "Percentage of students: " << (studentCount / 30.0) * 100 << "%" << endl;
     }
     else if (choice == "python") {
         fstream python_students_file;
@@ -470,12 +479,24 @@ void ReportInformation() {
             return;
         }
 
+        int studentCount = 0, maleCount = 0, femaleCount = 0;
         string line;
-        cout << "\nReport for Python Students:\n";
         while (getline(python_students_file, line)) {
-            cout << line << endl;
+            studentCount++;
+            // Assuming gender is represented as "Male" or "Female" in the CSV file
+            if (line.find("Male") != string::npos) {
+                maleCount++;
+            } else if (line.find("Female") != string::npos) {
+                femaleCount++;
+            }
         }
         python_students_file.close();
+
+        cout << "\nReport for Python Students:\n";
+        cout << "Total students in Python: " << studentCount << endl;
+        cout << "Male students: " << maleCount << endl;
+        cout << "Female students: " << femaleCount << endl;
+        cout << "Percentage of students: " << (studentCount / 30.0) * 100 << "%" << endl;
     }
     else if (choice == "html,css,javascript" || choice == "html") {
         fstream html_students_file;
@@ -486,12 +507,24 @@ void ReportInformation() {
             return;
         }
 
+        int studentCount = 0, maleCount = 0, femaleCount = 0;
         string line;
-        cout << "\nReport for HTML, CSS, and JavaScript Students:\n";
         while (getline(html_students_file, line)) {
-            cout << line << endl;
+            studentCount++;
+            // Assuming gender is represented as "Male" or "Female" in the CSV file
+            if (line.find("Male") != string::npos) {
+                maleCount++;
+            } else if (line.find("Female") != string::npos) {
+                femaleCount++;
+            }
         }
         html_students_file.close();
+
+        cout << "\nReport for HTML, CSS, and JavaScript Students:\n";
+        cout << "Total students in HTML, CSS, and JavaScript: " << studentCount << endl;
+        cout << "Male students: " << maleCount << endl;
+        cout << "Female students: " << femaleCount << endl;
+        cout << "Percentage of students: " << (studentCount / 30.0) * 100 << "%" << endl;
     }
     else if (choice == "java") {
         fstream java_students_file;
@@ -502,18 +535,29 @@ void ReportInformation() {
             return;
         }
 
+        int studentCount = 0, maleCount = 0, femaleCount = 0;
         string line;
-        cout << "\nReport for Java Students:\n";
         while (getline(java_students_file, line)) {
-            cout << line << endl;
+            studentCount++;
+            // Assuming gender is represented as "Male" or "Female" in the CSV file
+            if (line.find("Male") != string::npos) {
+                maleCount++;
+            } else if (line.find("Female") != string::npos) {
+                femaleCount++;
+            }
         }
         java_students_file.close();
+
+        cout << "\nReport for Java Students:\n";
+        cout << "Total students in Java: " << studentCount << endl;
+        cout << "Male students: " << maleCount << endl;
+        cout << "Female students: " << femaleCount << endl;
+        cout << "Percentage of students: " << (studentCount / 30.0) * 100 << "%" << endl;
     }
     else {
         cout << "Invalid choice, please choose a valid programming language." << endl;
     }
 }
-
     void displayStudentList() {
     cout << "We have 4 Class for viewer: " << endl;
     cout << "1.C++\n2.HtmlCssJavascript\n3.Java\n4.Python\n5.Display all class" << endl;
@@ -898,11 +942,11 @@ int main() {
 
             switch (Admin_choice) {
             case 1:
-                // Call the function to update student ID
+                
                 RSH.updateStudentInfo();
                 break;
             case 2:
-                // Call the function to delete student information
+                
                 cout << "Deleting student information..." << endl;
                 RSH.deleteStudent();
                 break;
